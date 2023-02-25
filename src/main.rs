@@ -5,8 +5,10 @@ use std::thread;
 use std::time::Duration;
 
 fn main() {
+    println!("Starting rename_file. \n Every 30 seconds the file temp.rec will be renamed to replay_DATE. ");
+    
     loop {
-        thread::sleep(Duration::from_millis(5000));
+        thread::sleep(Duration::from_millis(30_000));
 
         if Path::new("./temp.rec").exists() {
             let now = Utc::now();
@@ -23,6 +25,8 @@ fn main() {
                 )),
             )
             .expect("An error occured renaming the file. ");
+
+            println!("A file was renamed. ");
         }
     }
 }
